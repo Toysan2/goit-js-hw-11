@@ -44,9 +44,7 @@ async function fetchImages(query) {
     if (lightbox) {
       lightbox.refresh();
     } else {
-      lightbox = new SimpleLightbox('.gallery a', {
-        /* options */
-      });
+      lightbox = new SimpleLightbox('.gallery a', {});
     }
 
     page++;
@@ -90,12 +88,11 @@ document.getElementById('search-form').addEventListener('submit', function (e) {
   e.preventDefault();
   const query = e.target.searchQuery.value.trim();
   if (!query) return;
-  page = 1; // Reset the page counter
-  document.querySelector('.gallery').innerHTML = ''; // Clear previous images
+  page = 1;
+  document.querySelector('.gallery').innerHTML = '';
   fetchImages(query);
 });
 
-// Detekcja przewijania i automatyczne ładowanie nowych obrazków
 window.addEventListener('scroll', function () {
   const query = document.getElementById('search-form').searchQuery.value.trim();
   if (
